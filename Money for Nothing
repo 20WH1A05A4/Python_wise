@@ -1,0 +1,41 @@
+We are the middle men in the widget market. your job is to buy widgets from the widget producer companies and sell them to the widget consumer companies.
+Each widget consumer company has an open requestfor one widget per day, until some end date, and a price at which it is willing to buy the widgets. On the
+other hand,each widgets producer company has a start date at which it can start delivering widgets and a price at whichit will deliver each widget.
+
+Due to fair competition laws, you can sign a contract with only one producer company and only one consumer company. You will buy widgets from the 
+producer company, one per day, starting on the day it canstart delivering, and ending on the date specified by the consumer company. On each of those days
+you earn the difference between the producer's selling price and the consumer's buying price.
+
+
+SOLUTION:
+
+
+#MONEY_FOR_NOTHING.
+#taking input of number of consumer and producer comapnies in the widget market
+print("Enter the number of producer's and consumer's companies :")
+m,n = map(int, input().split())
+
+def info(comp):
+    company_info = []
+    for i in range(comp):
+        print("enter the price and date for company ", i + 1)
+        price, date = map(int, input().split())
+        p = [price, date]
+        company_info.append(p)
+    return company_info
+
+#function which calculates the maximum profit he can earn
+def calculating_max_profit(producer, consumer):
+    profit = 0
+    for p in producer :
+        for c in consumer: 
+            if p[0] < c[0] and p[1] < c[1] :
+                dollar = (c[0] - p[0]) * (c[1] - p[1])
+                if dollar > profit :
+                    profit = dollar
+    return profit
+print("enter producer companies prices and starting date of their selling widget")
+producer_info = info(m)
+print("enter consumer companies prices and ending date of their buying widget")
+consumer_info = info(n)
+print("the profit earned by middleman is:", calculating_max_profit(producer_info, consumer_info))
